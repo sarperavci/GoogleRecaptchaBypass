@@ -30,8 +30,7 @@ I have created `test.py` to demonstrate the usage of this script. You can run th
 
 ## Demo
 
-![Demo](docs/demo.gif)
-
+![](docs/demo.mp4)
  
 ## How does it work?
 
