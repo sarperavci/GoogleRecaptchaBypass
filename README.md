@@ -30,9 +30,8 @@ I have created `test.py` to demonstrate the usage of this script. You can run th
 
 ## Demo
 
-<video controls>
-  <source src="docs/demo.mp4" type="video/mp4">
-</video>
+![Demo](docs/demo.gif)
+
  
 ## How does it work?
 
