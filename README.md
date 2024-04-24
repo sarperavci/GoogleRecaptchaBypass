@@ -12,6 +12,12 @@ Three dependencies are required to run this script. You can install them using t
 pip install -r requirements.txt
 ```
 
+Also, you need to install ffmpeg. You can download it from [here](https://ffmpeg.org/download.html).
+
+```bash
+sudo apt-get install ffmpeg
+```
+
 ## Usage
 
 To implement this script in your project, you can follow a similar approach as shown below:
