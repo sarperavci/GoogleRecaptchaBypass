@@ -30,7 +30,9 @@ I have created `test.py` to demonstrate the usage of this script. You can run th
 
 ## Demo
 
-![](docs/demo.mp4)
+<video controls>
+  <source src="docs/demo.mp4" type="video/mp4">
+</video>
  
 ## How does it work?
 
