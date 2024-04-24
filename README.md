@@ -1,4 +1,4 @@
-# GoogleRecaptchaBypass
+# Google Recaptcha Solver
 
 **We love bots ❤️, but Google doesn't.** So, here is the solution to bypass Google reCAPTCHA.
 
