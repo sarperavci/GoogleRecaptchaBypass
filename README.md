@@ -59,3 +59,13 @@ We automate the browser to solve the reCAPTCHA. Instead of image captcha, we are
 
 -  Selenium implementation.
 -  Better exception handling.
+
+## Star History
+
+<a href="https://star-history.com/#sarperavci/GoogleRecaptchaBypass&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
+ </picture>
+</a>
