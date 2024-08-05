@@ -1,71 +1,97 @@
-# Google Recaptcha Solver
+# reCAPTCHA Bypass
 
-**We love bots ❤️, but Google doesn't.** So, here is the solution to bypass Google reCAPTCHA.
+This project provides a solution to automatically solve Google's reCAPTCHA using Selenium WebDriver. The solver handles both the initial checkbox challenge and the audio CAPTCHA challenge.
 
-Solve Google reCAPTCHA less than 5 seconds! 🚀
 
-This is a Python script to solve Google reCAPTCHA using the DrissionPage library. *Selenium implementation will be added soon.*
+## Table of Contents
 
-# Sponsor
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Code Structure](#code-structure)
+- [Demo](#demo)
+- [Credits](#credits)
 
-### [Capsolver](https://www.capsolver.com/?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass)
 
-[![Capsolver](docs/capsolver.jpg)](https://www.capsolver.com/?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass)
-[Capsolver.com](https://www.capsolver.com/?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass) is an AI-powered service that specializes in solving various types of captchas automatically. It supports captchas such as [reCAPTCHA V2](https://docs.capsolver.com/guide/captcha/ReCaptchaV2.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [reCAPTCHA V3](https://docs.capsolver.com/guide/captcha/ReCaptchaV3.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [hCaptcha](https://docs.capsolver.com/guide/captcha/HCaptcha.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [FunCaptcha](https://docs.capsolver.com/guide/captcha/FunCaptcha.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [DataDome](https://docs.capsolver.com/guide/captcha/DataDome.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [AWS Captcha](https://docs.capsolver.com/guide/captcha/awsWaf.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [Geetest](https://docs.capsolver.com/guide/captcha/Geetest.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), and Cloudflare [Captcha](https://docs.capsolver.com/guide/antibots/cloudflare_turnstile.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass) / [Challenge 5s](https://docs.capsolver.com/guide/antibots/cloudflare_challenge.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), [Imperva / Incapsula](https://docs.capsolver.com/guide/antibots/imperva.html?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), among others.
+## Features
 
-For developers, Capsolver offers API integration options detailed in their [documentation](https://docs.capsolver.com/?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), facilitating the integration of captcha solving into applications. They also provide browser extensions for [Chrome](https://chromewebstore.google.com/detail/captcha-solver-auto-captc/pgojnojmmhpofjgdmaebadhbocahppod) and [Firefox](https://addons.mozilla.org/es/firefox/addon/capsolver-captcha-solver/), making it easy to use their service directly within a browser. Different pricing packages are available to accommodate varying needs, ensuring flexibility for users.
+- Automatically solves Google's reCAPTCHA challenges.
+- Handles the initial checkbox as well as the audio CAPTCHA.
+- Uses asynchronous downloading to speed up audio CAPTCHA processing.
+- Converts audio files to text using Google Speech Recognition.
 
 
 ## Installation
-Three dependencies are required to run this script. You can install them using the following command:
-```bash
+
+1. **Clone the Repository**
+
+```
+git clone https://github.com/obaskly/reCAPTCHA-Bypass.git
+cd reCAPTCHA-Bypass
+```
+
+2. **Install Dependencies**
+
+```
 pip install -r requirements.txt
 ```
 
-Also, you need to install ffmpeg. You can download it from [here](https://ffmpeg.org/download.html).
+3. **Install FFmpeg**
 
-```bash
-sudo apt-get install ffmpeg
-```
+- Linux:
+
+  ```
+  sudo apt-get update
+  sudo apt-get install ffmpeg
+  ```
+  
+- Windows:
+
+  Follow this tutorial: https://www.wikihow.com/Install-FFmpeg-on-Windows
 
 ## Usage
 
 To implement this script in your project, you can follow a similar approach as shown below:
 
 ```python
-from DrissionPage import ChromiumPage 
+from selenium import webdriver
 from RecaptchaSolver import RecaptchaSolver
-driver = ChromiumPage()
-recaptchaSolver = RecaptchaSolver(driver)
+
+# Initialize the WebDriver options
+options = webdriver.ChromeOptions()
+options.add_argument("--incognito")
+options.add_experimental_option("excludeSwitches", ["enable-automation", "enable-logging"])
+
+driver = webdriver.Chrome(options=options)
 driver.get("https://www.google.com/recaptcha/api2/demo")
-recaptchaSolver.solveCaptcha()
+recaptchaSolver = RecaptchaSolver(driver)
+
+try:
+    # Perform CAPTCHA solving
+    recaptchaSolver.solveCaptcha()
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+    driver.quit()
 ```
 
 I have created `test.py` to demonstrate the usage of this script. You can run the `test.py` file to see the script in action.
 
+    
+    python test.py
+    
+
+## Code Structure
+
+- `RecaptchaSolver.py`: Contains the `RecaptchaSolver` class with methods to solve the reCAPTCHA.
+- `test.py`: Example usage of the `RecaptchaSolver` class.
+
 
 ## Demo
 
-![Demo](docs/demo.gif)
+https://github.com/user-attachments/assets/1646aae0-984d-4e81-8b62-89b21a4ad4cf
 
- 
-## How does it work?
 
-We automate the browser to solve the reCAPTCHA. Instead of image captcha, we are solving the audio captcha. The audio captcha is easier to solve programmatically.
+## Credits
 
-**One warning:** Google may block your IP if you solve too many captchas in a short period of time. So, use this script wisely or change your IP frequently.
-
-## What's next?
-
--  Selenium implementation.
--  Better exception handling.
-
-## Star History
-
-<a href="https://star-history.com/#sarperavci/GoogleRecaptchaBypass&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
- </picture>
-</a>
+This project was inspired by and uses techniques from [sarperavci/GoogleRecaptchaBypass](https://github.com/sarperavci/GoogleRecaptchaBypass).
