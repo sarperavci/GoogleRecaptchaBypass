@@ -15,6 +15,9 @@ This is a Python script to solve Google reCAPTCHA using the DrissionPage library
 
 For developers, Capsolver offers API integration options detailed in their [documentation](https://docs.capsolver.com/?utm_source=github&utm_medium=banner_github&utm_campaign=GoogleRecaptchaBypass), facilitating the integration of captcha solving into applications. They also provide browser extensions for [Chrome](https://chromewebstore.google.com/detail/captcha-solver-auto-captc/pgojnojmmhpofjgdmaebadhbocahppod) and [Firefox](https://addons.mozilla.org/es/firefox/addon/capsolver-captcha-solver/), making it easy to use their service directly within a browser. Different pricing packages are available to accommodate varying needs, ensuring flexibility for users.
 
+## Recent Updates
+
+Good news! Selenium implementation is added. Thanks to [@obaskly](https://github.com/obaskly) for the contribution. Check out the [selenium branch](https://github.com/sarperavci/GoogleRecaptchaBypass/tree/selenium) for more details.
 
 ## Installation
 Three dependencies are required to run this script. You can install them using the following command:
@@ -54,11 +57,6 @@ I have created `test.py` to demonstrate the usage of this script. You can run th
 We automate the browser to solve the reCAPTCHA. Instead of image captcha, we are solving the audio captcha. The audio captcha is easier to solve programmatically.
 
 **One warning:** Google may block your IP if you solve too many captchas in a short period of time. So, use this script wisely or change your IP frequently.
-
-## What's next?
-
--  Selenium implementation.
--  Better exception handling.
 
 ## Star History
 
