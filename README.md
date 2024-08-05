@@ -26,8 +26,8 @@ This project provides a solution to automatically solve Google's reCAPTCHA using
 1. **Clone the Repository**
 
 ```
-git clone https://github.com/obaskly/reCAPTCHA-Bypass.git
-cd reCAPTCHA-Bypass
+git clone https://github.com/obaskly/RecaptchaBypass.git
+cd RecaptchaBypass
 ```
 
 2. **Install Dependencies**
