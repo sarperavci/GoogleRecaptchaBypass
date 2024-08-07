@@ -35,7 +35,6 @@ class RecaptchaSolver:
 
             # Check if the CAPTCHA is solved
             time.sleep(1)  # Allow some time for the state to update
-            
             if self.isSolved():
                 print("CAPTCHA solved by clicking.")
                 self.driver.switch_to.default_content()  # Switch back to main content
