@@ -16,9 +16,9 @@ This project provides a solution to automatically solve Google's reCAPTCHA using
 ## Features
 
 - Automatically solves Google's reCAPTCHA challenges.
-- Handles the initial checkbox as well as the audio CAPTCHA.
 - Uses asynchronous downloading to speed up audio CAPTCHA processing.
 - Converts audio files to text using Google Speech Recognition.
+- Checks if the reCAPTCHA is solved with just a click before proceeding to the bypass technique.
 
 
 ## Installation
@@ -26,8 +26,8 @@ This project provides a solution to automatically solve Google's reCAPTCHA using
 1. **Clone the Repository**
 
 ```
-git clone https://github.com/obaskly/reCAPTCHA-Bypass.git
-cd reCAPTCHA-Bypass
+git clone https://github.com/obaskly/RecaptchaBypass.git
+cd RecaptchaBypass
 ```
 
 2. **Install Dependencies**
@@ -89,7 +89,7 @@ I have created `test.py` to demonstrate the usage of this script. You can run th
 
 ## Demo
 
-https://github.com/user-attachments/assets/1646aae0-984d-4e81-8b62-89b21a4ad4cf
+https://github.com/user-attachments/assets/9bcec70e-c15d-4ff1-b0e3-5d578d47f029
 
 
 ## Credits

@@ -34,6 +34,7 @@ class RecaptchaSolver:
             ).click()
 
             # Check if the CAPTCHA is solved
+            time.sleep(1)  # Allow some time for the state to update
             if self.isSolved():
                 print("CAPTCHA solved by clicking.")
                 self.driver.switch_to.default_content()  # Switch back to main content
@@ -96,7 +97,7 @@ class RecaptchaSolver:
             print("Entered and submitted CAPTCHA text.")
 
             # Wait for CAPTCHA to be processed
-            time.sleep(0.8)
+            time.sleep(0.8)  # Increase this if necessary
 
             # Verify CAPTCHA is solved
             if self.isSolved():
