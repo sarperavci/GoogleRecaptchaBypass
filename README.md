@@ -16,9 +16,9 @@ This project provides a solution to automatically solve Google's reCAPTCHA using
 ## Features
 
 - Automatically solves Google's reCAPTCHA challenges.
-- Handles the initial checkbox as well as the audio CAPTCHA.
 - Uses asynchronous downloading to speed up audio CAPTCHA processing.
 - Converts audio files to text using Google Speech Recognition.
+- Checks if the reCAPTCHA is solved with just a click before proceeding to the bypass technique.
 
 
 ## Installation
