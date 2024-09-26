@@ -12,14 +12,14 @@ class RecaptchaSolver:
         
         # Click on the recaptcha
         iframe_inner('.rc-anchor-content',timeout=1).click()
-        self.driver.wait.ele_displayed("xpath://iframe[contains(@title, 'recaptcha')]",timeout=3)
+        self.driver.wait.ele_displayed("xpath://iframe[contains(@title, 'reCAPTCHA')]",timeout=3)
 
         # Sometimes just clicking on the recaptcha is enough to solve it
         if self.isSolved():
             return
         
-        # Get the new iframe
-        iframe = self.driver("xpath://iframe[contains(@title, 'recaptcha')]")
+        # Get the new iframe //reCAPTCHA sorusunun süresi iki dakika sonra dolacak
+        iframe = self.driver("xpath://iframe[contains(@title, 'recaptcha challenge expires in two minutes')]")
 
         # Click on the audio button
         iframe('#recaptcha-audio-button',timeout=1).click()
