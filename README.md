@@ -14,7 +14,7 @@ Good news! Selenium implementation is added. Thanks to [@obaskly](https://github
 
 ### [Capsolver](https://www.capsolver.com/?utm_source=github&utm_medium=ads&utm_campaign=scraping&utm_term=GoogleRecaptchaBypass)
 
-[![Capsolver](docs/capsolver.png)](https://www.capsolver.com/?utm_source=github&utm_medium=ads&utm_campaign=scraping&utm_term=GoogleRecaptchaBypass)
+[![Capsolver](docs/capsolver.jpg)](https://www.capsolver.com/?utm_source=github&utm_medium=ads&utm_campaign=scraping&utm_term=GoogleRecaptchaBypass)
 
 ## Installation
 Three dependencies are required to run this script. You can install them using the following command:
