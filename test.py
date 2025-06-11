@@ -1,8 +1,13 @@
 from DrissionPage import ChromiumPage 
 from RecaptchaSolver import RecaptchaSolver
 import time
+import shutil
+import sys
 
- 
+for tool in ["ffmpeg", "ffprobe"]:
+    if shutil.which(tool) is None:
+        sys.exit(f"Error: '{tool}' is not installed or not found in PATH. Please install it using 'sudo apt install ffmpeg'.")
+
 driver = ChromiumPage()
 recaptchaSolver = RecaptchaSolver(driver)
 
