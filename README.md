@@ -10,11 +10,27 @@ This is a Python script to solve Google reCAPTCHA using the DrissionPage library
 
 Good news! Selenium implementation is added. Thanks to [@obaskly](https://github.com/obaskly) for the contribution. Check out the [selenium branch](https://github.com/sarperavci/GoogleRecaptchaBypass/tree/selenium) for more details.
 
-# Sponsor
 
-### [Capsolver](https://www.capsolver.com/?utm_source=github&utm_medium=ads&utm_campaign=scraping&utm_term=GoogleRecaptchaBypass)
+### Easist way to bypass Google reCAPTCHA
 
-[![Capsolver](docs/capsolver.jpg)](https://www.capsolver.com/?utm_source=github&utm_medium=ads&utm_campaign=scraping&utm_term=GoogleRecaptchaBypass)
+Use [Capsolver](https://www.capsolver.com/?utm_source=github&utm_medium=ads&utm_campaign=scraping&utm_term=GoogleRecaptchaBypass) to bypass seamlessly Google reCAPTCHA v2 and v3.
+Check [Capsolver-GoogleRecaptchaV2Bypass](https://github.com/sarperavci/Capsolver-GoogleRecaptchaV2Bypass) and [Capsolver-GoogleRecaptchaV3Bypass](https://github.com/sarperavci/Capsolver-GoogleRecaptchaV3Bypass)
+
+Here is a simple example:
+
+```python
+from CapsolverRecaptchaV2Bypasser import CapsolverRecaptchaV2Bypasser
+from selenium import webdriver
+
+CAPSOLVER_API_KEY = "CAP-YOUR_API_KEY"
+page_url = "https://google.com/recaptcha/api2/demo"
+page_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-" # This can be found in the data-sitekey attribute of the reCaptcha element
+
+page = webdriver.Chrome()
+page.get( page_url )
+recaptchaBypasser = CapsolverRecaptchaV2Bypasser(page, page_url, page_key, CAPSOLVER_API_KEY)
+recaptchaBypasser.solve_recaptcha()
+```
 
 ## Installation
 Three dependencies are required to run this script. You can install them using the following command:
