@@ -7,8 +7,8 @@ from pydub import AudioSegment
 import speech_recognition as sr
 
 class RecaptchaSolver:
-    def __init__(self, sb):
-        self.sb = sb
+    def __init__(self, page):
+        self.page = page
 
     async def download_audio(self, url, path):
         async with aiohttp.ClientSession() as session:
@@ -17,41 +17,40 @@ class RecaptchaSolver:
                     f.write(await response.read())
         print("Downloaded audio asynchronously.")
 
-    def solveCaptcha(self):
+    async def solveCaptcha(self):
         try:
-            # Switch to the CAPTCHA iframe
-            self.sb.switch_to_frame('iframe[title*="reCAPTCHA"]')
+            # Wait for the CAPTCHA iframe to be available
+            recaptcha_frame = self.page.frame_locator('iframe[title*="reCAPTCHA"]')
             
-            # Click on the CAPTCHA box
-            self.sb.click('#recaptcha-anchor')
+            # Click on the CAPTCHA checkbox
+            await recaptcha_frame.locator('#recaptcha-anchor').click()
 
             # Check if the CAPTCHA is solved
-            time.sleep(1)  # Allow some time for the state to update
-            if self.isSolved():
+            await asyncio.sleep(1)  # Allow some time for the state to update
+            if await self.isSolved():
                 print("CAPTCHA solved by clicking.")
-                self.sb.switch_to_default_content()
                 return
 
             # If not solved, attempt audio CAPTCHA solving
-            self.solveAudioCaptcha()
+            await self.solveAudioCaptcha()
 
         except Exception as e:
             print(f"An error occurred while solving CAPTCHA: {e}")
-            self.sb.switch_to_default_content()
             raise
 
-    def solveAudioCaptcha(self):
+    async def solveAudioCaptcha(self):
         try:
-            self.sb.switch_to_default_content()
-            
             # Switch to the audio CAPTCHA iframe
-            self.sb.switch_to_frame('iframe[title*="recaptcha challenge expires in two minutes"]')
+            challenge_frame = self.page.frame_locator('iframe[title*="recaptcha challenge expires in two minutes"]')
 
             # Click on the audio button
-            self.sb.click('#recaptcha-audio-button')
+            await challenge_frame.locator('#recaptcha-audio-button').click()
 
+            # Wait for audio source to be available
+            await asyncio.sleep(1)
+            
             # Get the audio source URL
-            audio_source = self.sb.get_attribute('#audio-source', 'src')
+            audio_source = await challenge_frame.locator('#audio-source').get_attribute('src')
             print(f"Audio source URL: {audio_source}")
             
             # Download the audio to the temp folder asynchronously
@@ -59,7 +58,7 @@ class RecaptchaSolver:
             path_to_mp3 = os.path.normpath(os.path.join(temp_dir, f"{random.randrange(1, 1000)}.mp3"))
             path_to_wav = os.path.normpath(os.path.join(temp_dir, f"{random.randrange(1, 1000)}.wav"))
             
-            asyncio.run(self.download_audio(audio_source, path_to_mp3))
+            await self.download_audio(audio_source, path_to_mp3)
 
             # Convert mp3 to wav
             sound = AudioSegment.from_mp3(path_to_mp3)
@@ -74,15 +73,15 @@ class RecaptchaSolver:
             print(f"Recognized CAPTCHA text: {captcha_text}")
 
             # Enter the CAPTCHA text
-            self.sb.type('#audio-response', captcha_text)
-            self.sb.press_keys('#audio-response', '\n')
+            await challenge_frame.locator('#audio-response').fill(captcha_text)
+            await challenge_frame.locator('#audio-response').press('Enter')
             print("Entered and submitted CAPTCHA text.")
 
             # Wait for CAPTCHA to be processed
-            time.sleep(0.8)
+            await asyncio.sleep(0.8)
 
             # Verify CAPTCHA is solved
-            if self.isSolved():
+            if await self.isSolved():
                 print("Audio CAPTCHA solved.")
             else:
                 print("Failed to solve audio CAPTCHA.")
@@ -90,27 +89,22 @@ class RecaptchaSolver:
 
         except Exception as e:
             print(f"An error occurred while solving audio CAPTCHA: {e}")
-            self.sb.switch_to_default_content()
             raise
 
-        finally:
-            # Always switch back to the main content
-            self.sb.switch_to_default_content()
-
-    def isSolved(self):
+    async def isSolved(self):
         try:
-            # Switch back to the default content
-            self.sb.switch_to_default_content()
-
-            # Switch to the reCAPTCHA iframe
-            self.sb.switch_to_frame('iframe[title*="reCAPTCHA"]')
-
-            # Check if the checkbox is checked
-            aria_checked = self.sb.get_attribute('#recaptcha-anchor', 'aria-checked')
-            checkbox_class = self.sb.get_attribute('#recaptcha-anchor', 'class')
+            # Access the reCAPTCHA iframe
+            recaptcha_frame = self.page.frame_locator('iframe[title*="reCAPTCHA"]')
+            
+            # Get the checkbox element
+            checkbox = recaptcha_frame.locator('#recaptcha-anchor')
+            
+            # Check the aria-checked attribute
+            aria_checked = await checkbox.get_attribute('aria-checked')
+            checkbox_class = await checkbox.get_attribute('class')
 
             # Return True if the aria-checked attribute is "true" or the checkbox has the 'recaptcha-checkbox-checked' class
-            return aria_checked == "true" or 'recaptcha-checkbox-checked' in checkbox_class
+            return aria_checked == "true" or 'recaptcha-checkbox-checked' in (checkbox_class or '')
 
         except Exception as e:
             print(f"An error occurred while checking if CAPTCHA is solved: {e}")

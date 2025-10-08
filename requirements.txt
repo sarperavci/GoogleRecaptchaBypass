@@ -1,4 +1,4 @@
-seleniumbase
+playwright
 pydub
 SpeechRecognition
 aiohttp
