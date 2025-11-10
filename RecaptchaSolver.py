@@ -1,138 +1,111 @@
 import os
-import urllib.request
 import random
-import pydub
-import speech_recognition
+import asyncio
+import aiohttp
 import time
-from typing import Optional
-from DrissionPage import ChromiumPage
-
+from pydub import AudioSegment
+import speech_recognition as sr
 
 class RecaptchaSolver:
-    """A class to solve reCAPTCHA challenges using audio recognition."""
+    def __init__(self, page):
+        self.page = page
 
-    # Constants
-    TEMP_DIR = os.getenv("TEMP") if os.name == "nt" else "/tmp"
-    TIMEOUT_STANDARD = 7
-    TIMEOUT_SHORT = 1
-    TIMEOUT_DETECTION = 0.05
+    async def download_audio(self, url, path):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                with open(path, 'wb') as f:
+                    f.write(await response.read())
+        print("Downloaded audio asynchronously.")
 
-    def __init__(self, driver: ChromiumPage) -> None:
-        """Initialize the solver with a ChromiumPage driver.
-
-        Args:
-            driver: ChromiumPage instance for browser interaction
-        """
-        self.driver = driver
-
-    def solveCaptcha(self) -> None:
-        """Attempt to solve the reCAPTCHA challenge.
-
-        Raises:
-            Exception: If captcha solving fails or bot is detected
-        """
-        
-        # Handle main reCAPTCHA iframe
-        self.driver.wait.ele_displayed(
-            "@title=reCAPTCHA", timeout=self.TIMEOUT_STANDARD
-        )
-        time.sleep(0.1)
-        iframe_inner = self.driver("@title=reCAPTCHA")
-
-        # Click the checkbox
-        iframe_inner.wait.ele_displayed(
-            ".rc-anchor-content", timeout=self.TIMEOUT_STANDARD
-        )
-        iframe_inner(".rc-anchor-content", timeout=self.TIMEOUT_SHORT).click()
-
-        # Check if solved by just clicking
-        if self.is_solved():
-            return
-
-        # Handle audio challenge
-        iframe = self.driver("xpath://iframe[contains(@title, 'recaptcha')]")
-        iframe.wait.ele_displayed(
-            "#recaptcha-audio-button", timeout=self.TIMEOUT_STANDARD
-        )
-        iframe("#recaptcha-audio-button", timeout=self.TIMEOUT_SHORT).click()
-        time.sleep(0.3)
-
-        if self.is_detected():
-            raise Exception("Captcha detected bot behavior")
-
-        # Download and process audio
-        iframe.wait.ele_displayed("#audio-source", timeout=self.TIMEOUT_STANDARD)
-        src = iframe("#audio-source").attrs["src"]
-
+    async def solveCaptcha(self):
         try:
-            text_response = self._process_audio_challenge(src)
-            iframe("#audio-response").input(text_response.lower())
-            iframe("#recaptcha-verify-button").click()
-            time.sleep(0.4)
+            # Wait for the CAPTCHA iframe to be available
+            recaptcha_frame = self.page.frame_locator('iframe[title*="reCAPTCHA"]')
+            
+            # Click on the CAPTCHA checkbox
+            await recaptcha_frame.locator('#recaptcha-anchor').click()
 
-            if not self.is_solved():
-                raise Exception("Failed to solve the captcha")
+            # Check if the CAPTCHA is solved
+            await asyncio.sleep(1)  # Allow some time for the state to update
+            if await self.isSolved():
+                print("CAPTCHA solved by clicking.")
+                return
+
+            # If not solved, attempt audio CAPTCHA solving
+            await self.solveAudioCaptcha()
 
         except Exception as e:
-            raise Exception(f"Audio challenge failed: {str(e)}")
+            print(f"An error occurred while solving CAPTCHA: {e}")
+            raise
 
-    def _process_audio_challenge(self, audio_url: str) -> str:
-        """Process the audio challenge and return the recognized text.
-
-        Args:
-            audio_url: URL of the audio file to process
-
-        Returns:
-            str: Recognized text from the audio file
-        """
-        mp3_path = os.path.join(self.TEMP_DIR, f"{random.randrange(1,1000)}.mp3")
-        wav_path = os.path.join(self.TEMP_DIR, f"{random.randrange(1,1000)}.wav")
-
+    async def solveAudioCaptcha(self):
         try:
-            urllib.request.urlretrieve(audio_url, mp3_path)
-            sound = pydub.AudioSegment.from_mp3(mp3_path)
-            sound.export(wav_path, format="wav")
+            # Switch to the audio CAPTCHA iframe
+            challenge_frame = self.page.frame_locator('iframe[title*="recaptcha challenge expires in two minutes"]')
 
-            recognizer = speech_recognition.Recognizer()
-            with speech_recognition.AudioFile(wav_path) as source:
+            # Click on the audio button
+            await challenge_frame.locator('#recaptcha-audio-button').click()
+
+            # Wait for audio source to be available
+            await asyncio.sleep(1)
+            
+            # Get the audio source URL
+            audio_source = await challenge_frame.locator('#audio-source').get_attribute('src')
+            print(f"Audio source URL: {audio_source}")
+            
+            # Download the audio to the temp folder asynchronously
+            temp_dir = os.getenv("TEMP") if os.name == "nt" else "/tmp/"
+            path_to_mp3 = os.path.normpath(os.path.join(temp_dir, f"{random.randrange(1, 1000)}.mp3"))
+            path_to_wav = os.path.normpath(os.path.join(temp_dir, f"{random.randrange(1, 1000)}.wav"))
+            
+            await self.download_audio(audio_source, path_to_mp3)
+
+            # Convert mp3 to wav
+            sound = AudioSegment.from_mp3(path_to_mp3)
+            sound.export(path_to_wav, format="wav")
+            print("Converted MP3 to WAV.")
+
+            # Recognize the audio
+            recognizer = sr.Recognizer()
+            with sr.AudioFile(path_to_wav) as source:
                 audio = recognizer.record(source)
+            captcha_text = recognizer.recognize_google(audio).lower()
+            print(f"Recognized CAPTCHA text: {captcha_text}")
 
-            return recognizer.recognize_google(audio)
+            # Enter the CAPTCHA text
+            await challenge_frame.locator('#audio-response').fill(captcha_text)
+            await challenge_frame.locator('#audio-response').press('Enter')
+            print("Entered and submitted CAPTCHA text.")
 
-        finally:
-            for path in (mp3_path, wav_path):
-                if os.path.exists(path):
-                    try:
-                        os.remove(path)
-                    except OSError:
-                        pass
+            # Wait for CAPTCHA to be processed
+            await asyncio.sleep(0.8)
 
-    def is_solved(self) -> bool:
-        """Check if the captcha has been solved successfully."""
+            # Verify CAPTCHA is solved
+            if await self.isSolved():
+                print("Audio CAPTCHA solved.")
+            else:
+                print("Failed to solve audio CAPTCHA.")
+                raise Exception("Failed to solve CAPTCHA")
+
+        except Exception as e:
+            print(f"An error occurred while solving audio CAPTCHA: {e}")
+            raise
+
+    async def isSolved(self):
         try:
-            return (
-                "style"
-                in self.driver.ele(
-                    ".recaptcha-checkbox-checkmark", timeout=self.TIMEOUT_SHORT
-                ).attrs
-            )
-        except Exception:
+            # Access the reCAPTCHA iframe
+            recaptcha_frame = self.page.frame_locator('iframe[title*="reCAPTCHA"]')
+            
+            # Get the checkbox element
+            checkbox = recaptcha_frame.locator('#recaptcha-anchor')
+            
+            # Check the aria-checked attribute
+            aria_checked = await checkbox.get_attribute('aria-checked')
+            checkbox_class = await checkbox.get_attribute('class')
+
+            # Return True if the aria-checked attribute is "true" or the checkbox has the 'recaptcha-checkbox-checked' class
+            return aria_checked == "true" or 'recaptcha-checkbox-checked' in (checkbox_class or '')
+
+        except Exception as e:
+            print(f"An error occurred while checking if CAPTCHA is solved: {e}")
             return False
-
-    def is_detected(self) -> bool:
-        """Check if the bot has been detected."""
-        try:
-            return (
-                self.driver.ele("Try again later", timeout=self.TIMEOUT_DETECTION)
-                .states()
-                .is_displayed
-            )
-        except Exception:
-            return False
-
-    def get_token(self) -> Optional[str]:
-        """Get the reCAPTCHA token if available."""
-        try:
-            return self.driver.ele("#recaptcha-token").attrs["value"]
-        except Exception:
-            return None
