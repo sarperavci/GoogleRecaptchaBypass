@@ -12,64 +12,6 @@ Good news! Selenium implementation is added. Thanks to [@obaskly](https://github
 
 ## Sponsors
 
-### Nstproxy
-
-[<img width="1280" height="800" alt="1756709054016" src="https://github.com/user-attachments/assets/9242659a-0314-4dc7-862f-5fa2c9a3fc80"/>](https://www.nstproxy.com/?type=flow&utm_source=sarperavci)
-
-If you're looking for a reliable proxy to **bypass anti-bot systems, scrape at scale, and access geo-restricted data without blocks**, Nstproxy is built for you. Perfect for large-scale web scraping, SEO monitoring, e-commerce data collection, price intelligence, and automation — even under the strictest anti-scraping protections.
-
-Nstproxy offers a global pool of residential, datacenter, and IPv6 proxies with rotating or sticky sessions, advanced anti-block tech, and pricing from $0.1/GB for maximum uptime and ROI.
-
-**Key Features:**
-
-* 🌍 **Global IP Coverage** – 110M+ residential IPs, 195+ countries, IPv4/IPv6  
-* 🔄 **Rotation Control** – Per request or sticky sessions for consistent sessions  
-* 🛡 **Anti-ban & CAPTCHA Bypass** – Designed for high scraping success rates  
-* 💰 **Affordable** – From $0.1/GB, far below market average  
-* ⚡ **Multi-purpose** – Scraping, SEO, automation, e-commerce, analytics  
-* 🔌 **Easy Integration** – Python, Puppeteer, Playwright, Node.js
-* 📈 **Unlimited Scaling** – Handle any volume with stable performance
-
-An all-in-one proxy solution for developers and traders who need reliability, scalability, and cost efficiency.  
- 👉 Learn more: [Nstproxy.com](https://www.nstproxy.com/?type=flow&utm_source=sarperavci): [https://www.nstproxy.com/?type=flow\&utm\_source=sarperavci](https://www.nstproxy.com/?type=flow&utm_source=sarperavci)  | [Dashboard](https://app.nstproxy.com/?utm_source=sarperavci)    
-
-Telegram:[https://t.me/nstproxy](https://t.me/nstproxy)
-
-Discord: [https://discord.gg/5jjWCAmvng](https://discord.gg/5jjWCAmvng)   
-
-Use code: **RECAPTCHA get 10% OFF**
-
-<!-- AD -->
----
-### CapMonster.Cloud
-
-✅ CapMonster.Cloud — Fast, Reliable CAPTCHA Solving for Automation & Scraping
-
-[![CapMonster Cloud](https://help.zennolab.com/upload/u/02/020538b7c128.png)](https://capmonster.cloud/en/?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass)
-
-If you are tired of wasting time solving endless CAPTCHAs during scraping, automation, or testing — we've got a solution for you.  
-Meet CapMonster.Cloud — the AI-powered CAPTCHA solving service trusted by thousands of users worldwide. 🚀
-
---
-
-🔥 **Why users love CapMonster.Cloud**
-  
-💡 Very high success rates (up to 99%)  
-⚡ Super fast solving times  
-💲 Affordable transparent pricing (pay per 1,000 CAPTCHAs)  
-🔌 Easy integration via API + browser extensions  
-⭐ Excellent reviews on TrustPilot, SourceForge, SaaSHub, AlternativeTo
-
---
-
-🔗 **Useful Links**
-
-💲 [Pricing & Supported CAPTCHA Types (25+ types supported)](https://capmonster.cloud/en?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass#new-plans)  
-📘 [API Documentation](https://docs.capmonster.cloud/?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass)  
-💡 Main Website → [capmonster.cloud](https://capmonster.cloud/en/?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass)  
-⭐ Reviews → [TrustPilot](https://www.trustpilot.com/review/capmonster.cloud)
-
----
 ### RapidProxy
 
 [<img width="1680" height="1060" alt="RapidProxy" src="https://github.com/user-attachments/assets/6d3819b8-7065-4bd4-bda7-b06e0fe04477"/>](https://www.rapidproxy.io/?ref=sarperavci)
