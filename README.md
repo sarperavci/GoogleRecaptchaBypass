@@ -12,6 +12,36 @@ Good news! Selenium implementation is added. Thanks to [@obaskly](https://github
 
 ## Sponsors
 
+### CapMonster.Cloud
+
+✅ CapMonster.Cloud — Fast, Reliable CAPTCHA Solving for Automation & Scraping
+
+[![CapMonster Cloud](https://help.zennolab.com/upload/u/02/020538b7c128.png)](https://capmonster.cloud/en/?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass)
+
+If you are tired of wasting time solving endless CAPTCHAs during scraping, automation, or testing — we've got a solution for you.  
+Meet CapMonster.Cloud — the AI-powered CAPTCHA solving service trusted by thousands of users worldwide. 🚀
+
+--
+
+🔥 **Why users love CapMonster.Cloud**
+  
+💡 Very high success rates (up to 99%)  
+⚡ Super fast solving times  
+💲 Affordable transparent pricing (pay per 1,000 CAPTCHAs)  
+🔌 Easy integration via API + browser extensions  
+⭐ Excellent reviews on TrustPilot, SourceForge, SaaSHub, AlternativeTo
+
+--
+
+🔗 **Useful Links**
+
+💲 [Pricing & Supported CAPTCHA Types (25+ types supported)](https://capmonster.cloud/en?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass#new-plans)  
+📘 [API Documentation](https://docs.capmonster.cloud/?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass)  
+💡 Main Website → [capmonster.cloud](https://capmonster.cloud/en/?utm_source=github&utm_campaign=sarperavci_GoogleRecaptchaBypass)  
+⭐ Reviews → [TrustPilot](https://www.trustpilot.com/review/capmonster.cloud)
+
+---
+
 ### RapidProxy
 
 [<img width="1680" height="1060" alt="RapidProxy" src="https://github.com/user-attachments/assets/6d3819b8-7065-4bd4-bda7-b06e0fe04477"/>](https://www.rapidproxy.io/?ref=sarperavci)
