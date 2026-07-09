@@ -12,6 +12,24 @@ Good news! Selenium implementation is added. Thanks to [@obaskly](https://github
 
 ## Sponsors
 
+### IPcook
+
+[<img src="https://github.com/user-attachments/assets/ea0a4dd8-f26a-4598-8307-868e190150a9" alt="IPcook"/>](https://www.ipcook.com/?ref=00JF84&utm_source=github&utm_medium=referral&utm_campaign=sarperavci)
+
+**Need Reliable Proxies? [IPcook](https://www.ipcook.com/?ref=00JF84&utm_source=github&utm_medium=referral&utm_campaign=sarperavci) Has Got You Covered**
+
+* 🚀 99.99% Uptime
+* ⚡ Avg. Response Time < 0.5s
+* 🔒 Up to 10 Sub-accounts
+* 🌍 24/7 Premium Support
+* ⏰ Sticky Sessions up to 24h
+* 📍 Free Geo-Targeting
+* ♾️ Unlimited Bandwidth
+
+🎁 [**Start with a FREE 100MB Trial**](https://www.ipcook.com/?ref=00JF84&utm_source=github&utm_medium=referral&utm_campaign=sarperavci)
+
+💸 Use code **WELCOME20** for 20% OFF
+
 ### RapidProxy
 
 [<img width="1680" height="1060" alt="RapidProxy" src="https://github.com/user-attachments/assets/6d3819b8-7065-4bd4-bda7-b06e0fe04477"/>](https://www.rapidproxy.io/?ref=sarperavci)
