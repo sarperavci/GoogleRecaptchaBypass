@@ -61,6 +61,7 @@ class RecaptchaSolver:
             raise Exception("Captcha detected bot behavior")
 
         # Download and process audio
+        iframe(".rc-audiochallenge-play-button", timeout=self.TIMEOUT_STANDARD).click()
         iframe.wait.ele_displayed("#audio-source", timeout=self.TIMEOUT_STANDARD)
         src = iframe("#audio-source").attrs["src"]
 
