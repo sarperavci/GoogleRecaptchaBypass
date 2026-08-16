@@ -100,10 +100,10 @@ We automate the browser to solve the reCAPTCHA. Instead of image captcha, we are
 
 ## Star History
 
-<a href="https://star-history.com/#sarperavci/GoogleRecaptchaBypass&Date">
+<a href="https://star-history.dera.page/#sarperavci/GoogleRecaptchaBypass&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=sarperavci/GoogleRecaptchaBypass&type=Date" />
  </picture>
 </a>
