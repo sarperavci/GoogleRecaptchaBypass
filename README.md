@@ -10,55 +10,6 @@ This is a Python script to solve Google reCAPTCHA using the DrissionPage library
 
 Good news! Selenium implementation is added. Thanks to [@obaskly](https://github.com/obaskly) for the contribution. Check out the [selenium branch](https://github.com/sarperavci/GoogleRecaptchaBypass/tree/selenium) for more details.
 
-## Sponsors
-
-### IPcook
-
-[<img src="https://github.com/user-attachments/assets/859ab3de-fc53-491f-948e-e2d3f5066a18" alt="IPcook"/>](https://www.ipcook.com/?ref=00JF84&utm_source=github&utm_medium=referral&utm_campaign=sarperavci)
-
-**Need Reliable Proxies? [IPcook](https://www.ipcook.com/?ref=00JF84&utm_source=github&utm_medium=referral&utm_campaign=sarperavci) Has Got You Covered**
-
-* 🔄 Monthly Plans with Auto-Renewal
-* 🚀 99.99% Uptime
-* ⚡ Avg. Response Time < 0.5s
-* 📶 Up to 100K Concurrent Connections
-* 🌍 55M+ IPs Across 185+ Locations
-* ♻️ IP Rotation Per Request
-* 🔒 Up to 10 Sub-accounts
-* 🛟 24/7 Premium Support
-
-🎁 [**Start with a FREE 100MB Trial**](https://www.ipcook.com/?ref=00JF84&utm_source=github&utm_medium=referral&utm_campaign=sarperavci)
-
-💸 Use code **WELCOME20** for 20% OFF
-
-### RapidProxy
-
-[<img width="1680" height="1060" alt="RapidProxy" src="https://github.com/user-attachments/assets/6d3819b8-7065-4bd4-bda7-b06e0fe04477"/>](https://www.rapidproxy.io/?ref=sarperavci)
-
-[**RapidProxy**](https://www.rapidproxy.io/?ref=sarperavci) – Power Your Data with Premium Proxies
-
-🎁 Try proxies [**for free**](https://www.rapidproxy.io/?ref=sarperavci) + Use code **RAPID10** for 10% OFF
-
-**Why Choose RapidProxy?**
-
-* 90M+ IPs in 200+ countries & regions  
-* No expiration on traffic — use anytime, no pressure  
-* Unlimited concurrency for maximum performance  
-* Starting from just $0.65/GB — built for scale  
-* City-level targeting for precise geo access  
-* Flexible session control tailored to your needs  
-* Enterprise-grade speed & reliability  
-* Built for large-scale automation  
-
-**💡 Built for Growth**
-
-Whether you're scaling scraping operations, running automation, or accessing global content, RapidProxy delivers the speed, stability, and flexibility you need to grow without limits.
-
-👉 Start your free trial today: [https://www.rapidproxy.io/?ref=sarperavci](https://www.rapidproxy.io/?ref=sarperavci)
-
----
-<!-- /AD -->
-
 ## Installation
 Three dependencies are required to run this script. You can install them using the following command:
 ```bash
